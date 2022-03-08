@@ -1,10 +1,10 @@
-﻿/**
+/**
 * Generated theme by Material Theme Generator
 * https://materialtheme.arcsine.dev
-* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzE5MmEzZCIsIj9lcjwjYmFiZmM1IiwiO2VyPCMwZTE5Mjd$LCIlPmBePCM2NmJiZmYiLCI~ZXI8I2QxZWJmZiIsIjtlcjwjNDlhNGZmfiwid2Fybj5gXjwjZTgzYzNjIiwiP2VyPCNmOGM1YzUiLCI7ZXI8I2RlMjcyN34sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2UxZTJlNSIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxPdXRsaW5lZCIsIj9uZXNzPmZhbHNlLCJ2ZXJzaW9uPjEyfQ==
+* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzE2NDE1YiIsIj9lcjwjYjljNmNlIiwiO2VyPCMwYzJhNDB$LCIlPmBePCM2NmJiZmYiLCI~ZXI8I2QxZWJmZiIsIjtlcjwjNDlhNGZmfiwid2Fybj5gXjwjZTQ0NzQ5IiwiP2VyPCNmN2M4YzgiLCI7ZXI8I2Q5MmYzMX4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2UxZTZlOCIsIjs9PCMxYTJhM2R$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxPdXRsaW5lZCIsIj9uZXNzPmZhbHNlLCJ2ZXJzaW9uPjEzfQ==
 */
 
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -59,7 +59,7 @@ $mat-light-theme-foreground: (
 );
 
 // Dark Theme text
-$light-text: #e1e2e5;
+$light-text: #e1e6e8;
 $light-primary-text: $light-text;
 $light-accent-text: rgba($light-primary-text, 0.7);
 $light-disabled-text: rgba($light-primary-text, 0.5);
@@ -93,9 +93,9 @@ $light-bg-darker-10:  darken($light-background, 10%);
 $light-bg-darker-20:  darken($light-background, 20%);
 $light-bg-darker-30:  darken($light-background, 30%);
 $light-bg-lighter-5:  lighten($light-background, 5%);
-$dark-bg-tooltip:     lighten(#2c2c2c, 20%);
-$dark-bg-alpha-4:     rgba(#2c2c2c, 0.04);
-$dark-bg-alpha-12:    rgba(#2c2c2c, 0.12);
+$dark-bg-tooltip:     lighten(#1a2a3d, 20%);
+$dark-bg-alpha-4:     rgba(#1a2a3d, 0.04);
+$dark-bg-alpha-12:    rgba(#1a2a3d, 0.12);
 
 $mat-light-theme-background: (
   background:               $light-background,
@@ -116,7 +116,7 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background:     #2c2c2c;
+$dark-background:     #1a2a3d;
 $dark-bg-lighter-5:   lighten($dark-background, 5%);
 $dark-bg-lighter-10:  lighten($dark-background, 10%);
 $dark-bg-lighter-20:  lighten($dark-background, 20%);
@@ -149,18 +149,18 @@ $mat-dark-theme-background: (
 // Theme Config
 
 body {
-  --primary-color: #192a3d;
-  --primary-lighter-color: #babfc5;
-  --primary-darker-color: #0e1927;
+  --primary-color: #16415b;
+  --primary-lighter-color: #b9c6ce;
+  --primary-darker-color: #0c2a40;
   --text-primary-color: #{$light-primary-text};
   --text-primary-lighter-color: #{$dark-primary-text};
   --text-primary-darker-color: #{$light-primary-text};
 }
 $mat-primary: (
-  main: #192a3d,
-  lighter: #babfc5,
-  darker: #0e1927,
-  200: #192a3d, // For slide toggle,
+  main: #16415b,
+  lighter: #b9c6ce,
+  darker: #0c2a40,
+  200: #16415b, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -193,18 +193,18 @@ $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
 
 
 body {
-  --warn-color: #e83c3c;
-  --warn-lighter-color: #f8c5c5;
-  --warn-darker-color: #de2727;
+  --warn-color: #e44749;
+  --warn-lighter-color: #f7c8c8;
+  --warn-darker-color: #d92f31;
   --text-warn-color: #{$light-primary-text};
   --text-warn-lighter-color: #{$dark-primary-text};
   --text-warn-darker-color: #{$light-primary-text};
 }
 $mat-warn: (
-  main: #e83c3c,
-  lighter: #f8c5c5,
-  darker: #de2727,
-  200: #e83c3c, // For slide toggle,
+  main: #e44749,
+  lighter: #f7c8c8,
+  darker: #d92f31,
+  200: #e44749, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
