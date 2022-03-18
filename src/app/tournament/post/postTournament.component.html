@@ -1,0 +1,94 @@
+<div class="text-white">
+  {{tournament | json}}
+</div>
+<hr>
+<div class="text-white">
+  {{form.value | json}}
+</div>
+<hr>
+<form [formGroup]="form" class="container-fluid my-5 col-5" xmlns="http://www.w3.org/1999/html">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Турнир</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="full-width" color="accent">
+            <input [(ngModel)]="tournament.name" formControlName="name" matInput placeholder="Название турнира" autocomplete="off">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field color="accent">
+            <mat-label>Категория</mat-label>
+            <mat-select [(value)]="tournament.categoryDigit"
+                        (valueChange)="categoryDigitValueChanged($event)">
+              <mat-option *ngFor="let digit of getCategoryDigits()" [value]="digit">
+                {{digit}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-3">
+          <mat-form-field color="accent">
+            <mat-label>Категория</mat-label>
+            <mat-select [(value)]="tournament.categoryLetter"
+                        (click)="categoryLetterClicked()"
+                        (valueChange)="categoryLetterValueChanged($event)">
+              <mat-option *ngFor="let letter of categoryLetters"
+                          [value]="letter">
+                {{letter}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field color="accent">
+            <mat-label>Возраст</mat-label>
+            <mat-select [(value)]="tournament.age" (valueChange)="ageValueChanged($event)">
+              <mat-option *ngFor="let age of ages" [value]="age.viewValue">
+                {{age.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-5 top-padding">
+          <mat-form-field class="full-width" appearance="fill" color="accent">
+            <mat-label>Дата начала турнира</mat-label>
+            <input formControlName="dateStart" (dateChange)="updateDateEnd()" matInput [matDatepicker]="pickerStart"
+                   autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <button mat-icon-button color="accent">
+          <mat-icon class="pin" [ngClass]="pinned ? 'on' : 'off'" (click)="updatePinStartEndDate()" color="">
+            attachment
+          </mat-icon>
+        </button>
+        <div class="col-5 top-padding">
+          <mat-form-field class="full-width" appearance="fill" color="accent">
+            <mat-label>Дата завершения турнира</mat-label>
+            <input formControlName="dateEnd" matInput [matDatepicker]="pickerEnd" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="confirm()" mat-raised-button color="accent">ОК</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
