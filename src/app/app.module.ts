@@ -27,8 +27,9 @@ import localeRu from '@angular/common/locales/ru';
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
 import {TournamentService} from "./services/tournament.service";
-import { HttpClientModule} from "@angular/common/http";
-import { GetTournamentComponent } from './tournament/get/get-tournament/get-tournament.component';
+import {HttpClientModule} from "@angular/common/http";
+import {GetTournamentComponent} from './tournament/get/get-tournament.component';
+import {MatTableModule} from "@angular/material/table";
 
 registerLocaleData(localeRu);
 
@@ -39,26 +40,27 @@ registerLocaleData(localeRu);
     PlayerComponent,
     GetTournamentComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
-    MatMenuModule,
-    MatListModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatSelectModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule.forRoot(appRoutes),
+        MatMenuModule,
+        MatListModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatSelectModule,
+        HttpClientModule,
+        MatTableModule
+    ],
   providers:
     [FormBuilder,
       {provide: MAT_DATE_FORMATS, useValue: MyFormats},
@@ -66,5 +68,6 @@ registerLocaleData(localeRu);
       TournamentService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

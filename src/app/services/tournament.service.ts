@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Tournament} from "../shared/Tournament";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,16 @@ export class TournamentService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getTournaments() {
-    return this.httpClient.get('https://localhost:5001/api/tournament/')
-      .subscribe(response => JSON.stringify(response));
+  getTournaments() : Observable<Tournament[]> {
+    return this.httpClient.get<Tournament[]>('https://localhost:5001/api/tournament/');
   }
 
-  postTournament(tournament: Tournament) {
-    return this.httpClient.post('https://localhost:5001/api/tournament/', tournament)
-      .subscribe(response => {
-        console.log(response);
-      })
+  getSingleTournament(id: number) {
+    return this.httpClient.get<Tournament>(`https://localhost:5001/api/tournament/${id}`);
+  }
+
+  postTournament(tournament: Tournament) : Observable<any> {
+    return this.httpClient.post('https://localhost:5001/api/tournament/', tournament);
   }
 
 }
