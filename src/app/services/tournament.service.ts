@@ -15,7 +15,7 @@ export class TournamentService {
     return this.httpClient.get<Tournament[]>('https://localhost:5001/api/tournament/');
   }
 
-  getSingleTournament(id: number) {
+  getSingleTournament(id: number): Observable<Tournament>{
     return this.httpClient.get<Tournament>(`https://localhost:5001/api/tournament/${id}`);
   }
 

@@ -64,19 +64,22 @@
 
       <div class="row">
         <div class="col-5 top-padding">
-          <mat-form-field class="full-width" appearance="fill" color="accent">
+          <mat-form-field class="no-padding full-width" appearance="fill" color="accent">
             <mat-label>Дата начала турнира</mat-label>
             <input formControlName="dateStart" (dateChange)="updateDateEnd()" matInput [matDatepicker]="pickerStart"
                    autocomplete="off">
             <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
             <mat-datepicker #pickerStart></mat-datepicker>
           </mat-form-field>
+          <label class="small no-margin">Дата окончания подачи заявок: {{tournament.dateRequest | date:"dd.MM.YYYY"}}</label>
         </div>
+
         <button mat-icon-button color="accent">
           <mat-icon class="pin" [ngClass]="pinned ? 'on' : 'off'" (click)="updatePinStartEndDate()" color="">
             attachment
           </mat-icon>
         </button>
+
         <div class="col-5 top-padding">
           <mat-form-field class="full-width" appearance="fill" color="accent">
             <mat-label>Дата завершения турнира</mat-label>
@@ -85,8 +88,22 @@
             <mat-datepicker #pickerEnd></mat-datepicker>
           </mat-form-field>
         </div>
+
+        <div>
+          <mat-form-field color="accent">
+            <mat-label>Теннисный Центр</mat-label>
+            <mat-select (click)="listTennisCenters()" [(value)]="tennisCenters" (valueChange)="tennisCenterValueChanged($event)">
+              <mat-option *ngFor="let tc of tennisCenters" [value]="tc.id">
+                {{tc.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
+
+
     </mat-card-content>
+
     <mat-card-actions>
       <button (click)="confirm()" mat-raised-button color="accent">ОК</button>
     </mat-card-actions>

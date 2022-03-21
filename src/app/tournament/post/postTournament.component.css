@@ -25,7 +25,7 @@
 
 .pin{
   align-self: center;
-  margin: 0 5% 2% 1%;
+  margin: 50% 5% 2% 1%;
   font-size: 200%;
 }
 
@@ -35,4 +35,12 @@
 
 .on{
   color: #49a4ff;
+}
+
+.no-margin{
+  margin: 0;
+}
+
+.no-padding{
+  padding: 0;
 }

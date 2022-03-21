@@ -5,6 +5,8 @@ import Enumerable from "linq";
 import from = Enumerable.from;
 import {Tournament} from "../../shared/Tournament";
 import {TournamentService} from "../../services/tournament.service";
+import {TennisCenterService} from "../../services/tennis-center.service";
+import {TennisCenter} from "../../shared/TennisCenter";
 
 @Component({
   selector: 'app-tournament',
@@ -35,7 +37,11 @@ export class PostTournamentComponent implements OnInit {
   pinned = false;
   selected = '';
 
-  constructor(private formBuilder: FormBuilder, private tournamentService: TournamentService) {
+  tennisCenters: TennisCenter[] = [];
+
+  constructor(private formBuilder: FormBuilder,
+              private tournamentService: TournamentService,
+              private tennisCenterService: TennisCenterService) {
   }
 
   form = this.formBuilder.group({
@@ -46,6 +52,7 @@ export class PostTournamentComponent implements OnInit {
     netRange: 32,
     dateStart: Date,
     dateEnd: Date,
+    tennisCenter: TennisCenter
   });
 
   ngOnInit(): void {
@@ -78,6 +85,12 @@ export class PostTournamentComponent implements OnInit {
     })
   }
 
+  tennisCenterValueChanged(event: any): void{
+    this.form.patchValue({
+      tennisCenter: event,
+    })
+  }
+
   categoryLetterValueChanged(event: any): void {
     this.form.patchValue({
       categoryLetter: event,
@@ -89,21 +102,13 @@ export class PostTournamentComponent implements OnInit {
     this.updatePinStartEndDate();
   }
 
+  listTennisCenters(): void {
+    this.tennisCenterService.getTennisCenters().subscribe(response =>
+      this.tennisCenters = response
+    );
+  }
 
   confirm(): void {
-    console.log(JSON.stringify(this.form.value));
-    //todo: call controller
-
-    // let tournament = new Tournament();
-    // tournament.age = 'TestFromAngular';
-    // tournament.categoryDigit = 'TestFromAngular';
-    // tournament.categoryDigit = 'TestFromAngular';
-    // tournament.name = 'TestFromAngular';
-    // tournament.netRange = 64;
-    // tournament.dateStart = new Date();
-    // tournament.dateEnd = new Date();
     this.tournamentService.postTournament(this.tournament);
-
-    //todo: replace with form data
   }
 }
