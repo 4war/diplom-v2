@@ -17,6 +17,7 @@ import {TennisCenter} from "../../shared/TennisCenter";
 export class PostTournamentComponent implements OnInit {
 
   tournament = new Tournament();
+  centers: TennisCenter[] = [];
 
   getCategoryDigits(): string[] {
     return from(categoryMap.keys()).toArray();
@@ -52,43 +53,58 @@ export class PostTournamentComponent implements OnInit {
     netRange: 32,
     dateStart: Date,
     dateEnd: Date,
+    dateRequest: Date,
     tennisCenter: TennisCenter
   });
 
   ngOnInit(): void {
+    this.listTennisCenters();
   }
 
   updateDateEnd(): void {
+    this.tournament.dateRequest = new Date();
+    this.tournament.dateRequest!.setDate(this.form.value.dateStart.getDate() - 14);
+    this.form.patchValue({
+      dateRequest: this.tournament.dateRequest,
+    });
+
     if (!this.pinned)
       return;
 
-    let finishTime = new Date();
-    finishTime.setDate(this.form.value.dateStart.getDate() + 5);
+    let dateEnd = new Date();
+    dateEnd.setDate(this.form.value.dateStart.getDate() + 4);
     this.form.patchValue({
-      dateEnd: finishTime,
+      dateEnd: dateEnd,
     });
   }
 
   categoryDigitValueChanged(event: any): void {
     this.form.patchValue({
       categoryDigit: event,
-    })
+    });
+    this.updateCategory();
+  }
+
+
+  updateCategory(): void {
+    this.tournament.category = this.form.value.categoryDigit + " " + this.form.value.categoryLetter;
   }
 
   categoryLetterClicked(): void {
     this.categoryLetters = this.getCategoryLetters(this.form.value.categoryDigit);
+    this.updateCategory();
   }
 
   ageValueChanged(event: any): void {
     this.form.patchValue({
       age: event,
-    })
+    });
   }
 
-  tennisCenterValueChanged(event: any): void{
+  tennisCenterValueChanged(event: any): void {
     this.form.patchValue({
       tennisCenter: event,
-    })
+    });
   }
 
   categoryLetterValueChanged(event: any): void {
@@ -99,16 +115,17 @@ export class PostTournamentComponent implements OnInit {
 
   updatePinStartEndDate(): void {
     this.pinned = !this.pinned;
-    this.updatePinStartEndDate();
+    this.updateDateEnd();
   }
 
   listTennisCenters(): void {
-    this.tennisCenterService.getTennisCenters().subscribe(response =>
-      this.tennisCenters = response
+    this.tennisCenterService.getTennisCenters().subscribe(response => {
+        this.tennisCenters = response;
+      }
     );
   }
 
   confirm(): void {
-    this.tournamentService.postTournament(this.tournament);
+    this.tournamentService.postTournament(this.tournament).subscribe(x => console.log(x));
   }
 }

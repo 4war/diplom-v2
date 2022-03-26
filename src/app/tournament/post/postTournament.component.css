@@ -1,46 +1,49 @@
 
-.full-width{
+.full-width {
   width: 100%;
 }
 
-.half-width{
+.half-width {
   width: 50%;
 }
 
-.top-padding{
+.top-padding {
   padding-top: 3px;
 }
 
-.margin-left mat-radio-button:not(:first-child){
-  margin-left:10px;
+.margin-left mat-radio-button:not(:first-child) {
+  margin-left: 10px;
 }
 
-.form-container{
+.form-container {
   margin: 100px;
 }
 
-.custom{
+.custom {
   margin-left: 20px;
 }
 
-.pin{
-  align-self: center;
-  margin: 50% 5% 2% 1%;
+.pin {
+  position: center;
   font-size: 200%;
 }
 
-.off{
+.off {
   color: #0c2a40;
 }
 
-.on{
+.on {
   color: #49a4ff;
 }
 
-.no-margin{
+.no-margin {
   margin: 0;
 }
 
-.no-padding{
+.no-padding {
   padding: 0;
+}
+
+.date-request {
+  color: #49a4ff;
 }
