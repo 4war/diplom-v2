@@ -4,6 +4,7 @@ import {Gender, Tournament} from "../../shared/Tournament";
 import {ages, Category} from "../../defaults";
 import Enumerable from "linq";
 import from = Enumerable.from;
+import {TournamentFactory} from "../../shared/TournamentFactory";
 
 @Component({
   selector: 'app-get-tournament',
@@ -12,11 +13,11 @@ import from = Enumerable.from;
 })
 export class GetTournamentComponent implements OnInit {
   singleTournament?: Tournament;
-  tournaments: Tournament[] = [];
+  factories: TournamentFactory[] = [];
+  //tournaments: Tournament[] = [];
   response: any;
 
-  displayedColumns: string[] = ['Id', 'Name', 'Category', 'Age', 'Gender'];
-  clickedRows = new Set<Tournament>();
+  displayedColumns: string[] = ['Name', 'Date', 'Category', 'Ages'];
 
   constructor(private tournamentService: TournamentService) {
   }
@@ -26,9 +27,14 @@ export class GetTournamentComponent implements OnInit {
   }
 
   getList(): void{
-    this.tournamentService.getTournaments().subscribe(response => {
-      this.tournaments = response;
+    this.tournamentService.getTournamentFactories().subscribe(response => {
+      this.factories = response;
+      console.log(this.factories);
     });
+  }
+
+  open(name: string): void{
+
   }
 
   getSingle(id: number): void{
@@ -42,12 +48,8 @@ export class GetTournamentComponent implements OnInit {
     });
   }
 
-  getAgeViewValue(age: number) : string{
-    let first = from(ages).firstOrDefault(x => x.max == age);
-    if (first == null)
-      return '';
-
-    return first.viewValue;
+  getAgeViewValue(ageArray: number[]) : string{
+    return from(ageArray).select(a => from(ages).first(x => x.max == a)).toArray().join(' ');
   }
 
   getGender(gender: number) : string{

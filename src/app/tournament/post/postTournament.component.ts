@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ages, Category, categoryMap} from "../../defaults";
 import Enumerable from "linq";
 import from = Enumerable.from;
@@ -29,7 +29,7 @@ export class PostTournamentComponent implements OnInit {
   secondAge?: number;
   categoryLetters: string[] = [];
   ages = ages;
-  pinned = false;
+  pinned = true;
   selected = '';
   secondAges = ages;
 
@@ -56,17 +56,18 @@ export class PostTournamentComponent implements OnInit {
   }
 
   form = this.formBuilder.group({
-    name: [''],
-    categoryDigit: [''],
-    categoryLetter: [''],
-    firstAge: [''],
-    secondAge: [''],
-    netRange: 32,
-    dateStart: Date,
-    dateEnd: Date,
-    dateRequest: Date,
-    tennisCenter: TennisCenter
+    name: new FormControl([''], [Validators.required]),
+    categoryDigit: new FormControl([''], [Validators.required]),
+    categoryLetter: new FormControl([''], [Validators.required]),
+    firstAge: new FormControl([''], [Validators.required]),
+    secondAge: new FormControl([''], [Validators.nullValidator]),
+    netRange: new FormControl(32, [Validators.required]),
+    dateStart: new FormControl(Date, [Validators.required]),
+    dateEnd: new FormControl(Date, [Validators.required]),
+    dateRequest: new FormControl(Date, [Validators.required]),
+    tennisCenter: new FormControl(TennisCenter, [Validators.required]),
   });
+
 
   ngOnInit(): void {
     this.listTennisCenters();
@@ -175,5 +176,7 @@ export class PostTournamentComponent implements OnInit {
       .subscribe(x => {
         console.log(x);
       });
+    debugger
+    this.general.router.navigateByUrl('tournaments/get');
   }
 }

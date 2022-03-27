@@ -32,6 +32,7 @@ import {GetTournamentComponent} from './tournament/get/get-tournament.component'
 import {MatTableModule} from "@angular/material/table";
 import {CustomDateAdapter} from "./shared/viewModels/CustomDateAdapter";
 import {GeneralService} from "./services/general.service";
+import {MatSortModule} from "@angular/material/sort";
 
 registerLocaleData(localeRu);
 
@@ -42,27 +43,28 @@ registerLocaleData(localeRu);
     PlayerComponent,
     GetTournamentComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        RouterModule.forRoot(appRoutes),
-        MatMenuModule,
-        MatListModule,
-        BrowserAnimationsModule,
-        MatCheckboxModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatCardModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatSelectModule,
-        HttpClientModule,
-        MatTableModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
+    MatMenuModule,
+    MatListModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatSelectModule,
+    HttpClientModule,
+    MatTableModule,
+    MatSortModule
+  ],
   providers:
     [FormBuilder, RouterModule, GeneralService,
       {provide: MAT_DATE_FORMATS, useValue: MyFormats},

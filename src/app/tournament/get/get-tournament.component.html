@@ -1,22 +1,16 @@
 <div class="container-fluid text-white font-zoom">
   <div class="tournament-table-container">
-    <table mat-table [dataSource]="tournaments" class="tournament-table">
-      <!-- Id Column -->
-      <ng-container matColumnDef="Id">
-        <th mat-header-cell *matHeaderCellDef>Номер</th>
-        <td mat-cell *matCellDef="let element">{{element.id}}</td>
-      </ng-container>
-
-      <!-- Gender Column -->
-      <ng-container matColumnDef="Gender">
-        <th mat-header-cell *matHeaderCellDef>Пол</th>
-        <td mat-cell *matCellDef="let element">{{getGender(element.gender)}}</td>
-      </ng-container>
-
+    <table mat-table [dataSource]="factories" class="tournament-table">
       <!-- Name Column -->
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef>Название</th>
         <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef>Дата начала</th>
+        <td mat-cell *matCellDef="let element">{{element.dateStart | date: 'dd.MM.YYYY'}}</td>
       </ng-container>
 
       <!-- Category Column -->
@@ -26,17 +20,16 @@
       </ng-container>
 
       <!-- Age Column -->
-      <ng-container matColumnDef="Age">
+      <ng-container matColumnDef="Ages">
         <th mat-header-cell *matHeaderCellDef>Возраст</th>
-        <td mat-cell *matCellDef="let element">{{getAgeViewValue(element.age)}}</td>
+        <td mat-cell *matCellDef="let element">{{getAgeViewValue(element.ages)}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns;"
-        (click)="clickedRows.add(row)"
-        [class.tournament-row-is-clicked]="clickedRows.has(row)"
+        (click)="open(row.name)"
       ></tr>
     </table>
     <a mat-button color="accent" routerLink="../tournaments/post" class="create-button">Создать Турнир</a>

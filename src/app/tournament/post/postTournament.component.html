@@ -1,13 +1,4 @@
-<div class="text-white">
-  {{tennisCenters | json}}
-</div>
-<hr>
-<div class="text-white">
-  {{factory | json}}
-</div>
-<hr>
-
-<form [formGroup]="form" class="container-fluid my-5 col-5" xmlns="http://www.w3.org/1999/html">
+<form [formGroup]="form" class="container-fluid my-5 col-7" xmlns="http://www.w3.org/1999/html">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Турнир</mat-card-title>
@@ -25,8 +16,8 @@
 
 
       <div class="row">
-        <div class="col-md-3">
-          <mat-form-field color="accent">
+        <div class="col-md-2">
+          <mat-form-field color="accent" class="full-width">
             <mat-label>Категория</mat-label>
             <mat-select [(value)]="form.value.categoryDigit"
                         (valueChange)="categoryDigitValueChanged($event)">
@@ -37,9 +28,9 @@
           </mat-form-field>
         </div>
 
-        <div class="col-md-3">
-          <mat-form-field color="accent">
-            <mat-label>Категория</mat-label>
+        <div class="col-md-2">
+          <mat-form-field color="accent" class="full-width">
+            <mat-label>Подкатегория</mat-label>
             <mat-select [(value)]="form.value.categoryLetter"
                         (click)="categoryLetterClicked()"
                         (valueChange)="categoryLetterValueChanged($event)">
@@ -62,7 +53,7 @@
           </mat-form-field>
         </div>
 
-        <button mat-icon-button color="accent" class="add" *ngIf="!secondAgeIsNeeded">
+        <button mat-icon-button color="accent" *ngIf="!secondAgeIsNeeded">
           <mat-icon [ngClass]="!secondAgeIsNeeded ? 'on' : 'off'" (click)="addSecondAge()" color="accent">
             add icon
           </mat-icon>
@@ -79,7 +70,7 @@
           </mat-form-field>
         </div>
 
-        <button mat-icon-button color="accent" class="remove" *ngIf="secondAgeIsNeeded">
+        <button mat-icon-button color="accent" *ngIf="secondAgeIsNeeded">
           <mat-icon [ngClass]="secondAgeIsNeeded ? 'on' : 'off'" (click)="removeSecondAge()" color="accent">
             clear icon
           </mat-icon>
@@ -133,7 +124,7 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button (click)="confirm()" mat-raised-button color="accent">ОК</button>
+      <a mat-button [disabled]="!form.valid" (click)="confirm()" mat-raised-button color="accent">ОК</a>
     </mat-card-actions>
   </mat-card>
 </form>
