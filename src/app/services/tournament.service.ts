@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Tournament} from "../shared/Tournament";
 import {catchError, Observable, throwError} from "rxjs";
+import {TournamentFactory} from "../shared/TournamentFactory";
+import Enumerable from "linq";
+import from = Enumerable.from;
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,8 +28,14 @@ export class TournamentService {
     return this.httpClient.get<Tournament>(`https://localhost:5001/api/tournament/${id}`);
   }
 
+  postTournaments(factory: TournamentFactory): Observable<any> {
+    console.log(JSON.stringify(factory));
+    return this.httpClient.post('https://localhost:5001/api/tournamentFactory/',
+      factory);
+  }
+
   postTournament(tournament: Tournament): Observable<any> {
-    console.error(JSON.stringify(tournament));
+    console.log(JSON.stringify(tournament));
     return this.httpClient.post('https://localhost:5001/api/tournament/',
       tournament);
   }

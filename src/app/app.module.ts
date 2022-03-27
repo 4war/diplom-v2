@@ -31,6 +31,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {GetTournamentComponent} from './tournament/get/get-tournament.component';
 import {MatTableModule} from "@angular/material/table";
 import {CustomDateAdapter} from "./shared/viewModels/CustomDateAdapter";
+import {GeneralService} from "./services/general.service";
 
 registerLocaleData(localeRu);
 
@@ -63,7 +64,7 @@ registerLocaleData(localeRu);
         MatTableModule
     ],
   providers:
-    [FormBuilder,
+    [FormBuilder, RouterModule, GeneralService,
       {provide: MAT_DATE_FORMATS, useValue: MyFormats},
       {provide: DateAdapter, useClass: CustomDateAdapter},
       {provide: LOCALE_ID, useValue: 'ru'},

@@ -3,7 +3,7 @@
 </div>
 <hr>
 <div class="text-white">
-  {{tournament | json}}
+  {{factory | json}}
 </div>
 <hr>
 
@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-12">
           <mat-form-field class="full-width" color="accent">
-            <input [(ngModel)]="tournament.name" formControlName="name" matInput placeholder="Название турнира"
+            <input [(ngModel)]="factory.name" formControlName="name" matInput placeholder="Название турнира"
                    autocomplete="off">
           </mat-form-field>
         </div>
@@ -51,16 +51,40 @@
           </mat-form-field>
         </div>
 
-        <div class="col-md-4">
-          <mat-form-field color="accent">
-            <mat-label>Возраст</mat-label>
-            <mat-select [(value)]="tournament.age" (valueChange)="ageValueChanged($event)">
+        <div class="col-md-2">
+          <mat-form-field class="full-width" color="accent">
+            <mat-label >Возраст</mat-label>
+            <mat-select [(value)]="firstAge" (valueChange)="firstAgeValueChanged($event)">
               <mat-option *ngFor="let age of ages" [value]="age.max">
                 {{age.viewValue}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
+
+        <button mat-icon-button color="accent" class="add" *ngIf="!secondAgeIsNeeded">
+          <mat-icon [ngClass]="!secondAgeIsNeeded ? 'on' : 'off'" (click)="addSecondAge()" color="accent">
+            add icon
+          </mat-icon>
+        </button>
+
+        <div class="col-md-2" *ngIf="secondAgeIsNeeded">
+          <mat-form-field class="full-width" color="accent">
+            <mat-label >Возраст</mat-label>
+            <mat-select [(value)]="secondAge" (valueChange)="secondAgeValueChanged($event)">
+              <mat-option *ngFor="let age of secondAges" [value]="age.max">
+                {{age.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <button mat-icon-button color="accent" class="remove" *ngIf="secondAgeIsNeeded">
+          <mat-icon [ngClass]="secondAgeIsNeeded ? 'on' : 'off'" (click)="removeSecondAge()" color="accent">
+            clear icon
+          </mat-icon>
+        </button>
+
       </div>
 
       <div class="row">
@@ -73,7 +97,7 @@
             <mat-datepicker #pickerStart></mat-datepicker>
           </mat-form-field>
          <label class="small no-margin">Дата окончания подачи заявок: <span
-            class="date-request">{{tournament.dateRequest | date:"dd.MM.YYYY"}}</span></label>
+            class="date-request">{{factory.dateRequest | date:"dd.MM.YYYY"}}</span></label>
         </div>
 
         <button mat-icon-button color="accent" class="pin">
@@ -96,7 +120,7 @@
         <div class="col-8 top-padding">
           <mat-form-field color="accent" class="full-width">
             <mat-label>Теннисный Центр</mat-label>
-            <mat-select (click)="listTennisCenters()" [(value)]="tournament.TennisCenter"
+            <mat-select (click)="listTennisCenters()" [(value)]="factory.TennisCenter"
                         (valueChange)="tennisCenterValueChanged($event)">
               <mat-option *ngFor="let tc of tennisCenters" [value]="tc">
                 {{tc.name}}

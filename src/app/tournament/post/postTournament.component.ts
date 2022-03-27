@@ -7,6 +7,10 @@ import {Tournament} from "../../shared/Tournament";
 import {TournamentService} from "../../services/tournament.service";
 import {TennisCenterService} from "../../services/tennis-center.service";
 import {TennisCenter} from "../../shared/TennisCenter";
+import {TournamentFactory} from "../../shared/TournamentFactory";
+import {GeneralService} from "../../services/general.service";
+import {ROUTES} from "@angular/router";
+import {appRoutes} from "../../../routes";
 
 @Component({
   selector: 'app-tournament',
@@ -16,8 +20,20 @@ import {TennisCenter} from "../../shared/TennisCenter";
 
 export class PostTournamentComponent implements OnInit {
 
-  tournament = new Tournament();
+
+  secondAgeIsNeeded = false;
+  factory = new TournamentFactory();
   centers: TennisCenter[] = [];
+
+  firstAge!: number;
+  secondAge?: number;
+  categoryLetters: string[] = [];
+  ages = ages;
+  pinned = false;
+  selected = '';
+  secondAges = ages;
+
+  tennisCenters: TennisCenter[] = [];
 
   getCategoryDigits(): string[] {
     return from(categoryMap.keys()).toArray();
@@ -33,23 +49,18 @@ export class PostTournamentComponent implements OnInit {
     return categoryMap.get(digit)!;
   }
 
-  categoryLetters: string[] = [];
-  ages = ages;
-  pinned = false;
-  selected = '';
-
-  tennisCenters: TennisCenter[] = [];
-
   constructor(private formBuilder: FormBuilder,
               private tournamentService: TournamentService,
-              private tennisCenterService: TennisCenterService) {
+              private tennisCenterService: TennisCenterService,
+              private general: GeneralService) {
   }
 
   form = this.formBuilder.group({
     name: [''],
     categoryDigit: [''],
     categoryLetter: [''],
-    age: [''],
+    firstAge: [''],
+    secondAge: [''],
     netRange: 32,
     dateStart: Date,
     dateEnd: Date,
@@ -62,10 +73,10 @@ export class PostTournamentComponent implements OnInit {
   }
 
   updateDateEnd(): void {
-    this.tournament.dateRequest = new Date();
-    this.tournament.dateRequest!.setDate(this.form.value.dateStart.getDate() - 14);
+    this.factory.dateRequest = new Date();
+    this.factory.dateRequest!.setDate(this.form.value.dateStart.getDate() - 14);
     this.form.patchValue({
-      dateRequest: this.tournament.dateRequest,
+      dateRequest: this.factory.dateRequest,
     });
 
     if (!this.pinned)
@@ -82,12 +93,13 @@ export class PostTournamentComponent implements OnInit {
     this.form.patchValue({
       categoryDigit: event,
     });
+
     this.updateCategory();
   }
 
 
   updateCategory(): void {
-    this.tournament.category = this.form.value.categoryDigit + " " + this.form.value.categoryLetter;
+    this.factory.category = this.form.value.categoryDigit + " " + this.form.value.categoryLetter;
   }
 
   categoryLetterClicked(): void {
@@ -95,10 +107,30 @@ export class PostTournamentComponent implements OnInit {
     this.updateCategory();
   }
 
-  ageValueChanged(event: any): void {
+  firstAgeValueChanged(event: any): void {
     this.form.patchValue({
-      age: event,
+      firstAge: event,
     });
+
+    this.updateAge();
+  }
+
+  secondAgeValueChanged(event: any): void {
+    this.form.patchValue({
+      secondAge: event,
+    });
+
+    this.updateAge();
+  }
+
+  updateAge(): void {
+    let array: number[] = [];
+    array = this.secondAgeIsNeeded
+      ? [this.form.value.firstAge, this.form.value.secondAge]
+      : [this.form.value.firstAge];
+
+    this.factory.ages = from(array).orderBy(x => x).toArray();
+    this.secondAges = from(ages).skipWhile(x => x.max <= this.form.value.firstAge).toArray();
   }
 
   tennisCenterValueChanged(event: any): void {
@@ -125,7 +157,23 @@ export class PostTournamentComponent implements OnInit {
     );
   }
 
+  addSecondAge(): void {
+    this.secondAgeIsNeeded = true;
+    if (this.factory.ages.length == 2)
+      this.factory.ages.pop();
+
+    this.updateAge();
+  }
+
+  removeSecondAge(): void {
+    this.secondAgeIsNeeded = false;
+    this.updateAge();
+  }
+
   confirm(): void {
-    this.tournamentService.postTournament(this.tournament).subscribe(x => console.log(x));
+    this.tournamentService.postTournaments(this.factory)
+      .subscribe(x => {
+        console.log(x);
+      });
   }
 }
