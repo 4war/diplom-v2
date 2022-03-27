@@ -18,7 +18,7 @@ import {FormBuilder} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MAT_DATE_FORMATS, MatNativeDateModule} from "@angular/material/core";
+import {DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule} from "@angular/material/core";
 import {MyFormats} from "./MyFormats";
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -30,6 +30,7 @@ import {TournamentService} from "./services/tournament.service";
 import {HttpClientModule} from "@angular/common/http";
 import {GetTournamentComponent} from './tournament/get/get-tournament.component';
 import {MatTableModule} from "@angular/material/table";
+import {CustomDateAdapter} from "./shared/viewModels/CustomDateAdapter";
 
 registerLocaleData(localeRu);
 
@@ -64,6 +65,7 @@ registerLocaleData(localeRu);
   providers:
     [FormBuilder,
       {provide: MAT_DATE_FORMATS, useValue: MyFormats},
+      {provide: DateAdapter, useClass: CustomDateAdapter},
       {provide: LOCALE_ID, useValue: 'ru'},
       TournamentService],
   bootstrap: [AppComponent]
