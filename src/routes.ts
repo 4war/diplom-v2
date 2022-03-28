@@ -5,10 +5,10 @@ import {GetTournamentComponent} from "./app/tournament/get/get-tournament.compon
 
 
 export const appRoutes: Routes = [
-  {path: 'tournaments', component: GetTournamentComponent},
   {path: 'tournaments/get', component: GetTournamentComponent},
   {path: 'tournaments/post', component: PostTournamentComponent},
   {path: 'players', component: PlayerComponent},
 
-  {path: '', redirectTo: '/tournaments', pathMatch: 'full'},
+  {path: '', redirectTo: '/tournaments/get', pathMatch: 'full'},
+  {path: 'tournaments', redirectTo: '/tournaments/get', pathMatch: 'full'},
 ];

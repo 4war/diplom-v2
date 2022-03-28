@@ -172,11 +172,14 @@ export class PostTournamentComponent implements OnInit {
   }
 
   confirm(): void {
+    if (!this.form.valid)
+      return;
+
     this.tournamentService.postTournaments(this.factory)
       .subscribe(x => {
         console.log(x);
       });
-    debugger
+
     this.general.router.navigateByUrl('tournaments/get');
   }
 }

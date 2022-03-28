@@ -12,12 +12,10 @@ import {TournamentFactory} from "../../shared/TournamentFactory";
   styleUrls: ['./get-tournament.component.css', '../../../styles.css']
 })
 export class GetTournamentComponent implements OnInit {
-  singleTournament?: Tournament;
   factories: TournamentFactory[] = [];
-  //tournaments: Tournament[] = [];
   response: any;
 
-  displayedColumns: string[] = ['Name', 'Date', 'Category', 'Ages'];
+  displayedColumns: string[] = ['Name', 'City', 'Date', 'Category', 'Ages'];
 
   constructor(private tournamentService: TournamentService) {
   }
@@ -37,19 +35,8 @@ export class GetTournamentComponent implements OnInit {
 
   }
 
-  getSingle(id: number): void{
-    this.tournamentService.getSingleTournament(id).subscribe(response => {
-      if (response == null){
-        this.singleTournament = new Tournament();
-        return;
-      }
-
-      this.singleTournament = response;
-    });
-  }
-
   getAgeViewValue(ageArray: number[]) : string{
-    return from(ageArray).select(a => from(ages).first(x => x.max == a)).toArray().join(' ');
+    return from(ageArray).select(a => from(ages).first(x => x.max == a).viewValue).toArray().join('; ');
   }
 
   getGender(gender: number) : string{

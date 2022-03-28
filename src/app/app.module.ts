@@ -33,6 +33,7 @@ import {MatTableModule} from "@angular/material/table";
 import {CustomDateAdapter} from "./shared/viewModels/CustomDateAdapter";
 import {GeneralService} from "./services/general.service";
 import {MatSortModule} from "@angular/material/sort";
+import { GetFactoryComponent } from './tournament/get-factory/get-factory.component';
 
 registerLocaleData(localeRu);
 
@@ -42,6 +43,7 @@ registerLocaleData(localeRu);
     PostTournamentComponent,
     PlayerComponent,
     GetTournamentComponent,
+    GetFactoryComponent,
   ],
   imports: [
     BrowserModule,
