@@ -1,6 +1,13 @@
 <div class="container-fluid text-white font-zoom">
   <div class="tournament-table-container">
     <table mat-table [dataSource]="factories" class="tournament-table">
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="FirstTournamentId">
+        <th mat-header-cell *matHeaderCellDef>Номер первого турнира</th>
+        <td mat-cell *matCellDef="let element">{{element.firstTournamentId}}</td>
+      </ng-container>
+
       <!-- Name Column -->
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef>Название</th>
@@ -35,7 +42,7 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns;"
-        (click)="open(row.name)"
+        (click)="open(row.firstTournamentId)"
       ></tr>
     </table>
     <a mat-button color="accent" routerLink="../post" class="create-button">Создать Турнир</a>

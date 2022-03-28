@@ -111,7 +111,7 @@
         <div class="col-8 top-padding">
           <mat-form-field color="accent" class="full-width">
             <mat-label>Теннисный Центр</mat-label>
-            <mat-select (click)="listTennisCenters()" [(value)]="factory.TennisCenter"
+            <mat-select (click)="listTennisCenters()" [(value)]="factory.tennisCenter"
                         (valueChange)="tennisCenterValueChanged($event)">
               <mat-option *ngFor="let tc of tennisCenters" [value]="tc">
                 {{tc.name}}

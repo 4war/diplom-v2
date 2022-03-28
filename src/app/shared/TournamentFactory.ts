@@ -1,7 +1,9 @@
 ﻿import {TennisCenter} from "./TennisCenter";
-import {Gender} from "./Tournament";
+import {Gender, Tournament} from "./Tournament";
 
 export class TournamentFactory{
+  firstTournamentId: number = 0;
+
   name: string ='';
   category: string = '';
   ages: number[] = [];
@@ -14,6 +16,7 @@ export class TournamentFactory{
   dateEnd: Date = new Date();
   dateRequest?: Date;
 
-  TennisCenter!: TennisCenter;
+  tennisCenter!: TennisCenter;
   genders: number[] = [0,1];
+  tournaments: Tournament[] = [];
 }

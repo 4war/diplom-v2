@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TournamentFactory} from "../../shared/TournamentFactory";
+import {TournamentService} from "../../services/tournament.service";
+import {GeneralService} from "../../services/general.service";
 
 @Component({
   selector: 'app-get-factory',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetFactoryComponent implements OnInit {
 
-  constructor() { }
+  factory?: TournamentFactory;
+
+  constructor(private tournamentService: TournamentService, private general: GeneralService) {
+    this.factory = general.currentFactory;
+  }
 
   ngOnInit(): void {
   }
-
 }

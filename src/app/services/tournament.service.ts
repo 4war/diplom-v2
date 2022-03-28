@@ -28,6 +28,10 @@ export class TournamentService {
     return this.httpClient.get<TournamentFactory[]>('https://localhost:5001/api/tournamentFactory/');
   }
 
+  getSingleFactory(idTournament: number): Observable<TournamentFactory>{
+    return this.httpClient.get<TournamentFactory>(`https://localhost:5001/api/tournamentFactory/${idTournament}`);
+  }
+
   getSingleTournament(id: number): Observable<Tournament> {
     return this.httpClient.get<Tournament>(`https://localhost:5001/api/tournament/${id}`);
   }
