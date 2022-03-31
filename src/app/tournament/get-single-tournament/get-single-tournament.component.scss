@@ -1,0 +1,20 @@
+mat-nav-list.list-horizontal {
+  padding: 0;
+
+  .mat-list-item {
+    display: inline-block;
+    height: auto;
+    width: auto;
+  }
+}
+
+.side-bar{
+  background-color: #071823;
+  height: 100vh;
+  width: min(250px, 15%);
+}
+
+.full-height{
+  height: 100vh;
+}
+

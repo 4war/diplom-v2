@@ -35,6 +35,7 @@ import {GeneralService} from "./services/general.service";
 import {MatSortModule} from "@angular/material/sort";
 import { GetFactoryComponent } from './tournament/get-factory/get-factory.component';
 import { GetSingleTournamentComponent } from './tournament/get-single-tournament/get-single-tournament.component';
+import { OverviewComponent } from './tournament/get-single-tournament/overview/overview.component';
 
 registerLocaleData(localeRu);
 
@@ -46,6 +47,7 @@ registerLocaleData(localeRu);
     GetTournamentComponent,
     GetFactoryComponent,
     GetSingleTournamentComponent,
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,
