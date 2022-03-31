@@ -10,7 +10,7 @@ import {TournamentFactory} from "../shared/TournamentFactory";
 })
 export class GeneralService {
 
-  currentFactory?: TournamentFactory;
+  currentFactory: TournamentFactory = new TournamentFactory();
 
   constructor(private httpClient: HttpClient, public  router: Router) {
   }

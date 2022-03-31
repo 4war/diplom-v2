@@ -44,8 +44,4 @@ export class GetTournamentComponent implements OnInit {
   getAgeViewValue(ageArray: number[]): string {
     return from(ageArray).select(a => from(ages).first(x => x.max == a).viewValue).toArray().join('; ');
   }
-
-  getGender(gender: number): string {
-    return gender == 0 ? 'М' : 'Ж';
-  }
 }
