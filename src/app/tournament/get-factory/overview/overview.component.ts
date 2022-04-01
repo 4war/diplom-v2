@@ -8,7 +8,7 @@ import from = Enumerable.from;
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css', '../../../../styles.css']
+  styleUrls: ['./overview.component.css', '../../../../styles.scss']
 })
 export class OverviewComponent implements OnInit {
 

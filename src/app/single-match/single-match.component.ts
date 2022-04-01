@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Match} from "../shared/Match";
 
 @Component({
   selector: 'app-single-match',
@@ -12,4 +13,5 @@ export class SingleMatchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input() match!: Match;
 }

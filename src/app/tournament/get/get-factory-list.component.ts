@@ -10,7 +10,7 @@ import {GeneralService} from "../../services/general.service";
 @Component({
   selector: 'app-get-tournament',
   templateUrl: './get-factory-list.component.html',
-  styleUrls: ['./get-factory-list.component.css', '../../../styles.css']
+  styleUrls: ['./get-factory-list.component.css', '../../../styles.scss']
 })
 export class GetFactoryListComponent implements OnInit {
   factories: TournamentFactory[] = [];

@@ -3,7 +3,7 @@
     <mat-card-header>Сетка</mat-card-header>
     <mat-card-content>
       <ngtt-single-elimination-tree
-        [tournament]="tournament"
+        [tournament]="tournamentViewModel"
         [matchTemplate]="myMatchTemplate">
       </ngtt-single-elimination-tree>
     </mat-card-content>
@@ -20,6 +20,10 @@
 </div>
 
 
+{{tournamentViewModel | json}}
+
 <ng-template #myMatchTemplate let-match>
-  <my-match></my-match>
+  <app-single-match [match]="match">
+    asd
+  </app-single-match>
 </ng-template>
