@@ -34,8 +34,11 @@ import {CustomDateAdapter} from "./shared/viewModels/CustomDateAdapter";
 import {GeneralService} from "./services/general.service";
 import {MatSortModule} from "@angular/material/sort";
 import { GetFactoryComponent } from './tournament/get-factory/get-factory.component';
-import { GetSingleTournamentComponent } from './tournament/get-single-tournament/get-single-tournament.component';
+import { GetTournamentComponent} from "./tournament/get-factory/get-tournament/get-tournament.component";
 import { OverviewComponent} from "./tournament/get-factory/overview/overview.component";
+import {MatTreeModule} from "@angular/material/tree";
+import {NgTournamentTreeModule} from "ng-tournament-tree";
+import { SingleMatchComponent } from './single-match/single-match.component';
 
 registerLocaleData(localeRu);
 
@@ -46,31 +49,34 @@ registerLocaleData(localeRu);
     GetPlayerListComponent,
     GetFactoryListComponent,
     GetFactoryComponent,
-    GetSingleTournamentComponent,
+    GetTournamentComponent,
     OverviewComponent,
+    SingleMatchComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
-    MatMenuModule,
-    MatListModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatSelectModule,
-    HttpClientModule,
-    MatTableModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule.forRoot(appRoutes),
+        MatMenuModule,
+        MatListModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatSelectModule,
+        HttpClientModule,
+        MatTableModule,
+        MatSortModule,
+        MatTreeModule,
+        NgTournamentTreeModule
+    ],
   providers:
     [FormBuilder, RouterModule, GeneralService,
       {provide: MAT_DATE_FORMATS, useValue: MyFormats},
