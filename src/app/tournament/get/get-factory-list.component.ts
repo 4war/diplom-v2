@@ -9,10 +9,10 @@ import {GeneralService} from "../../services/general.service";
 
 @Component({
   selector: 'app-get-tournament',
-  templateUrl: './get-tournament.component.html',
-  styleUrls: ['./get-tournament.component.css', '../../../styles.css']
+  templateUrl: './get-factory-list.component.html',
+  styleUrls: ['./get-factory-list.component.css', '../../../styles.css']
 })
-export class GetTournamentComponent implements OnInit {
+export class GetFactoryListComponent implements OnInit {
   factories: TournamentFactory[] = [];
   response: any;
 
@@ -37,7 +37,7 @@ export class GetTournamentComponent implements OnInit {
       .subscribe(x => {
         console.log(x);
         this.general.currentFactory = x;
-        this.general.router.navigateByUrl('tournaments/factory');
+        this.general.router.navigateByUrl('factory/get');
       });
   }
 

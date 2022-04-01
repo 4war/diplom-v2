@@ -3,22 +3,21 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ages, Category, categoryMap} from "../../defaults";
 import Enumerable from "linq";
 import from = Enumerable.from;
-import {Tournament} from "../../shared/Tournament";
 import {TournamentService} from "../../services/tournament.service";
 import {TennisCenterService} from "../../services/tennis-center.service";
 import {TennisCenter} from "../../shared/TennisCenter";
 import {TournamentFactory} from "../../shared/TournamentFactory";
 import {GeneralService} from "../../services/general.service";
-import {ROUTES} from "@angular/router";
-import {appRoutes} from "../../../routes";
+
+
 
 @Component({
   selector: 'app-tournament',
-  templateUrl: './postTournament.component.html',
-  styleUrls: ['./postTournament.component.css']
+  templateUrl: './post-factory.component.html',
+  styleUrls: ['./post-factory.component.css']
 })
 
-export class PostTournamentComponent implements OnInit {
+export class PostFactoryComponent implements OnInit {
 
 
   secondAgeIsNeeded = false;

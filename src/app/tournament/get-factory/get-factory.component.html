@@ -1,29 +1,28 @@
-<div class="factory-container container-fluid my-5 col-9">
-  <h1 class="text-white text-lg-center factory-header full-width">
-    {{factory.name}}
-  </h1>
-  <h2 class="text-white text-lg-center factory-header full-width">
-    {{factory.category}}
-  </h2>
-
-  <div class="row">
-    <div *ngFor="let tournament of factory.tournaments" class="col-md-3 my-3">
-      <a mat-button color="primary" class="tournament-card" routerLink="../single/overview">
-        <mat-card>
-          <mat-card-header [textContent]="getStage(tournament.stage)" class="d-flex justify-content-between full-width">
-          </mat-card-header>
-          <hr>
-          <mat-card-content>
-            <h2>{{getGender(tournament.gender)}}</h2>
-            <h2>{{getAge(tournament.age)}}</h2>
-            <h4>{{tournament.dateStart | date: 'dd.MM.YYYY'}} - {{tournament.dateEnd | date: 'dd.MM.YYYY'}}</h4>
-            <h6>Подача заявок до: {{tournament.dateRequest | date: 'dd.MM.YYYY'}}</h6>
-          </mat-card-content>
-        </mat-card>
-      </a>
-
+<div class="container-fluid full-height">
+  <div class="row full-width full-height">
+    <div class="col-2 div-side-bar">
+      <mat-nav-list class="text-white side-bar">
+        <mat-list-item>Обзор</mat-list-item>
+        <mat-list-item>Участники</mat-list-item>
+        <mat-list-item>Сетка</mat-list-item>
+        <mat-list-item>Правила</mat-list-item>
+        <mat-list-item routerLink="../.." class="my-4">
+          <mat-icon color="accent">keyboard_backspace</mat-icon>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+    <div class="col-md-8 mx-lg-5 full-height">
+      <h1 class="text-white text-lg-center factory-header full-width">
+        {{factory.name}}
+      </h1>
+      <h2 class="text-white text-lg-center factory-header full-width">
+        {{factory.category}}
+      </h2>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+
+
 
 

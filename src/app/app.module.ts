@@ -4,14 +4,14 @@ import {appRoutes} from "../routes";
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {PostTournamentComponent} from './tournament/post/postTournament.component';
+import {PostFactoryComponent} from './tournament/post/post-factory.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatListModule} from "@angular/material/list";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
-import {PlayerComponent} from './player/player.component';
+import {GetPlayerListComponent} from './player/get-player-list.component';
 import {RouterModule} from "@angular/router";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormBuilder} from "@angular/forms";
@@ -28,23 +28,23 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
 import {TournamentService} from "./services/tournament.service";
 import {HttpClientModule} from "@angular/common/http";
-import {GetTournamentComponent} from './tournament/get/get-tournament.component';
+import {GetFactoryListComponent} from './tournament/get/get-factory-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {CustomDateAdapter} from "./shared/viewModels/CustomDateAdapter";
 import {GeneralService} from "./services/general.service";
 import {MatSortModule} from "@angular/material/sort";
 import { GetFactoryComponent } from './tournament/get-factory/get-factory.component';
 import { GetSingleTournamentComponent } from './tournament/get-single-tournament/get-single-tournament.component';
-import { OverviewComponent } from './tournament/get-single-tournament/overview/overview.component';
+import { OverviewComponent} from "./tournament/get-factory/overview/overview.component";
 
 registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostTournamentComponent,
-    PlayerComponent,
-    GetTournamentComponent,
+    PostFactoryComponent,
+    GetPlayerListComponent,
+    GetFactoryListComponent,
     GetFactoryComponent,
     GetSingleTournamentComponent,
     OverviewComponent,

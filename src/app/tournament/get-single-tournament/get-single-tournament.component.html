@@ -1,15 +1,18 @@
 <div class="container-fluid full-height">
   <div class="row">
-    <mat-nav-list class="text-white col-md-2 side-bar">
-      <mat-list-item>Обзор</mat-list-item>
-      <mat-list-item>Участники</mat-list-item>
-      <mat-list-item>Сетка</mat-list-item>
-      <mat-list-item>Правила</mat-list-item>
-      <mat-list-item routerLink="../../factory" class="my-4">
-        <mat-icon color="accent">keyboard_backspace</mat-icon>
-      </mat-list-item>
-    </mat-nav-list>
-
-    <router-outlet name="tournament"></router-outlet>
+    <div class="col-2 div-side-bar">
+      <mat-nav-list class="text-white side-bar">
+        <mat-list-item>Обзор</mat-list-item>
+        <mat-list-item>Участники</mat-list-item>
+        <mat-list-item>Сетка</mat-list-item>
+        <mat-list-item>Правила</mat-list-item>
+        <mat-list-item routerLink="../.." class="my-4">
+          <mat-icon color="accent">keyboard_backspace</mat-icon>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
