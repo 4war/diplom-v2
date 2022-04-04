@@ -16,7 +16,7 @@ export class GetFactoryListComponent implements OnInit {
   factories: TournamentFactory[] = [];
   response: any;
 
-  displayedColumns: string[] = ['FirstTournamentId', 'Name', 'City', 'Date', 'Category', 'Ages'];
+  displayedColumns: string[] = ['Name', 'City', 'Dates', 'Category', 'Ages'];
 
   constructor(private tournamentService: TournamentService, private general: GeneralService) {
   }
